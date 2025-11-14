@@ -1,56 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    // Default mein 'home' page active rahegi
-    let activePageId = 'home';
-
-    // Function to handle page change (Smooth Transition)
-    const showPage = (targetId) => {
-        // Agar same page par click hua toh kuch nahi
-        if (targetId === activePageId) return; 
-
-        const currentPage = document.getElementById(activePageId);
-        const nextPage = document.getElementById(targetId);
-
-        if (currentPage && nextPage) {
-            // Step 1: Current page ko fade out karo
-            currentPage.style.opacity = '0';
-            
-            setTimeout(() => {
-                currentPage.classList.remove('active');
-                currentPage.style.display = 'none';
-
-                // Step 2: Naye page ko display: block karo
-                nextPage.style.display = 'block';
-                
-                // Chhota delay taaki browser display change hone ko process kar sake
-                setTimeout(() => {
-                    // Step 3: Naye page ko fade-in karo
-                    nextPage.classList.add('active');
-                    nextPage.style.opacity = '1';
-                    activePageId = targetId;
-                    
-                    // Better UX ke liye page ko top par scroll karo
-                    window.scrollTo({ top: 0, behavior: 'smooth' }); 
-                }, 50); 
-
-            }, 500); // CSS transition time (0.5s)
-        }
-    };
-
-    // Navigation button click listener
-    navLinks.forEach(link => {
-        link.addEventListener('click', (event) => {
-            const targetPage = event.target.getAttribute('data-page');
-            if (targetPage) {
-                showPage(targetPage);
-            }
-        });
-    });
-
-    // Initial setup: Ensure 'home' is active on load
-    showPage(activePageId);
-});
 // Page Navigation Logic
 const navLinks = document.querySelectorAll('.nav-link');
 const pageContents = document.querySelectorAll('.page-content');
@@ -62,8 +9,10 @@ const pageContents = document.querySelectorAll('.page-content');
 function navigate(targetPageId) {
     // Hide all pages with a fade-out effect
     pageContents.forEach(page => {
+        // Find the currently active page
         if (page.classList.contains('active')) {
             page.style.opacity = 0;
+            
             // Use a timeout to ensure fade-out completes before hiding content
             setTimeout(() => {
                 page.classList.remove('active');
@@ -73,11 +22,14 @@ function navigate(targetPageId) {
                 const targetPage = document.getElementById(`page-${targetPageId}`);
                 if (targetPage) {
                     targetPage.style.display = 'block';
-                    // Trigger reflow to apply display:block before opacity:1
+                    // Trigger reflow to ensure CSS transitions start correctly
                     void targetPage.offsetHeight; 
                     targetPage.classList.add('active');
                     targetPage.style.opacity = 1; 
                 }
+                
+                // Scroll to the top of the page for better UX
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
             }, 500); // Matches the CSS transition time
         }
     });
@@ -99,17 +51,6 @@ navLinks.forEach(link => {
     });
 });
 
-// Initial load check for the active page
-document.addEventListener('DOMContentLoaded', () => {
-    // Ensures the first page (home) is displayed correctly on load
-    const initialPage = document.querySelector('.page-content.active');
-    if (initialPage) {
-        initialPage.style.opacity = 1;
-        initialPage.style.display = 'block';
-    }
-});
-
-
 // --- API Integration: Quote Generator Logic ---
 
 const quoteText = document.getElementById('quote-text');
@@ -129,7 +70,6 @@ async function fetchQuoteAndDisplay() {
         const response = await fetch('https://zenquotes.io/api/random');
         
         if (!response.ok) {
-            // Handle HTTP errors (e.g., 404, 500)
             throw new Error(`Server returned status: ${response.status}`);
         }
         
@@ -137,12 +77,9 @@ async function fetchQuoteAndDisplay() {
 
         if (data && data.length > 0) {
             const quote = data[0]; 
-            
-            // Update UI with the fetched quote
             quoteText.textContent = `"${quote.q}"`;
             quoteAuthor.textContent = `— ${quote.a || 'Unknown'}`;
         } else {
-            // Fallback if API returns empty data
             quoteText.textContent = "Sorry, no quote found (API returned empty data).";
             quoteAuthor.textContent = "— API Error";
         }
@@ -150,16 +87,15 @@ async function fetchQuoteAndDisplay() {
     } catch (error) {
         console.error("Quote fetch error:", error);
         
-        // --- Custom Fallback for CORS/Network Issues ---
+        // This fallback confirms the necessity of running on a server (like GitHub Pages)
         quoteText.textContent = "Failed to fetch quote: Network or CORS Error.";
-        quoteAuthor.textContent = "— Try running the site on a web server (like GitHub Pages) instead of opening the file directly.";
+        quoteAuthor.textContent = "— The quote generator requires the site to run on a web server (like GitHub Pages).";
     } finally {
-        // Re-enable the button regardless of success or failure
         fetchQuoteBtn.disabled = false;
     }
 }
 
-// Initial quote fetch when the DOM is ready
+// Initial setup when the DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     // Fetch an initial quote when the page loads
     fetchQuoteAndDisplay();
@@ -167,5 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Attach click listener to the button
     if (fetchQuoteBtn) {
         fetchQuoteBtn.addEventListener('click', fetchQuoteAndDisplay);
+    }
+    
+    // Ensure the initial 'home' page is active and visible on load
+    const initialPage = document.getElementById('page-home');
+    if (initialPage) {
+        initialPage.classList.add('active');
+        initialPage.style.display = 'block';
+        initialPage.style.opacity = 1;
     }
 });
