@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himanshu Jangra - Personal Portfolio</title>
+    
+    <link rel="stylesheet" href="cia2.css"> 
+    
+    <style>
+        .main-header {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #575454; /* हेडर बैकग्राउंड */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+            position: fixed; 
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        .logo-button {
+            background: none;
+            border: none;
+            cursor: pointer; 
+            padding: 0;
+            outline: none;
+        }
+
+        .logo-button img {
+            width: 50px; /* लोगो का साइज़ */
+            height: 50px;
+            border-radius: 50%; 
+            display: block;
+            transition: transform 0.2s;
+        }
+        
+        /* क्लिक करने योग्य प्रभाव (Hover Effect) */
+        .logo-button:hover img {
+            transform: scale(1.05);
+        }
+
+        /* कंटेंट को हेडर के नीचे से शुरू करने के लिए */
+        .main-content {
+            padding-top: 70px; 
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="main-header">
+        <nav>
+            <button class="logo-button" onclick="goToHome()">
+                <img src="Black and White Circle Business Logo.jpg" alt="Company Logo">
+            </button>
+        </nav>
+    </header>
+    
+    <div class="main-content">
+        <img src="first page.png" alt="himanshu"> 
+    </div>
+
+    <footer></footer>
+
+    <script>
+        function goToHome() {
+            // 💥 यहाँ आपका लिंक जोड़ा गया है, जो एक नए टैब में खुलेगा
+            window.open('cia3.html', '_blank');
+        }
+    </script>
+
+</body>
+</html>

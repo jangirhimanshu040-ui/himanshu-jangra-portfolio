@@ -1,0 +1,112 @@
+/* सामान्य स्टाइलिंग और फ़ॉन्ट एप्लीकेशन */
+body {
+    /* 1. अपनी इमेज का पाथ यहाँ दें */
+    background-image: url(/image/firstapge.jpg); /* <-- यहाँ अपनी इमेज का पाथ डालें */
+    
+    /* 2. इमेज के लिए सेटिंग */
+    background-size: cover; /* इमेज को पूरे बैकग्राउंड को कवर करने के लिए स्ट्रेच करें */
+    background-position: center center; /* इमेज को सेंटर में रखें */
+    background-repeat: no-repeat; /* इमेज को दोहराएँ नहीं */
+    background-attachment: fixed; /* पेज स्क्रॉल करने पर इमेज फिक्स रहे */
+
+    /* 3. इमेज के ऊपर एक गहरा ओवरले (overlay) */
+    /* यह आपकी इमेज को थोड़ा गहरा करेगा ताकि टेक्स्ट स्पष्ट रूप से दिखाई दे */
+    background-color: rgba(0, 0, 0, 0.6); /* 60% काले रंग का ओवरले */
+    background-blend-mode: overlay; /* इमेज के ऊपर इस रंग को मिलाएं */
+
+    margin: 0;
+    color: white; 
+    font-family: 'Oswald', sans-serif; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    text-align: center;
+}
+/* ------------------------------------------------ */
+/* 1. Logo Overlay (अदृश्य होने पर) */
+/* ------------------------------------------------ */
+.logo-overlay {
+    /* इसे हमेशा टॉप पर, फिक्स्ड और फुल-स्क्रीन रखें */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-color: rgba(0, 0, 0, 0.95); /* लगभग काला, हल्का पारदर्शी पृष्ठभूमि */
+    color: white; /* ओवरले के अंदर का टेक्स्ट सफ़ेद */
+    z-index: 1000; /* सुनिश्चित करें कि यह बाकी सब कुछ कवर करे */
+    
+    /* JavaScript द्वारा सक्रिय होने से पहले अदृश्य रहता है */
+    display: none; /* JavaScript इसे 'flex' में बदलता है */
+    opacity: 0; /* Fade-in के लिए शुरुआत में 0 opacity */
+    
+    /* कंटेंट को सेंटर करने के लिए */
+    justify-content: center;
+    align-items: center;
+    
+    /* 'active' क्लास के लिए ट्रांज़िशन */
+    transition: opacity 0.8s ease-in-out; 
+}
+
+/* ------------------------------------------------ */
+/* 2. Logo Overlay Active State (JavaScript द्वारा जोड़ा गया) */
+/* ------------------------------------------------ */
+/* जब JavaScript 'active' क्लास जोड़ता है, तो यह दिखाई देने लगता है */
+.logo-overlay.active {
+    opacity: 1; /* पूरी तरह से अपारदर्शी (Fully visible) */
+}
+
+/* ------------------------------------------------ */
+/* 3. Overlay Content Container (ओवरले के अंदर का कंटेंट) */
+/* ------------------------------------------------ */
+.overlay-content {
+    text-align: center;
+    padding: 20px;
+    max-width: 90%;
+    /* कंटेंट को ऊपर-नीचे से भी थोड़ा सा सेंटर करने के लिए */
+    transform: translateY(0); 
+    transition: transform 0.8s ease-in-out;
+}
+
+/* ------------------------------------------------ */
+/* 4. Overlay Content के अंदर के एलिमेंट्स */
+/* ------------------------------------------------ */
+.overlay-image {
+    max-width: 200px; /* लोगो साइज़ */
+    height: auto;
+    border-radius: 50%; /* यदि आप लोगो को गोलाकार बनाना चाहते हैं */
+    margin: 20px 0;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.overlay-content h2 {
+    font-size: 3em;
+    margin-bottom: 0.2em;
+}
+
+.overlay-content p {
+    font-size: 1.2em;
+    color: #cccccc;
+    margin-top: 5px;
+}
+/* 3D-टेक्स्ट स्टाइल (यदि 3D इफ़ेक्ट चाहते हैं) */
+
+/* बटन स्टाइल */
+.overlay-content button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.overlay-content button:hover {
+    background-color: #0056b3;
+}

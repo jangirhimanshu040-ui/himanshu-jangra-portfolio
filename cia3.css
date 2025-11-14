@@ -1,0 +1,165 @@
+/* सामान्य स्टाइलिंग और फ़ॉन्ट एप्लीकेशन */
+body {
+    /* गहरे भूरे (Dark Gradient) पृष्ठभूमि के लिए */
+    background: linear-gradient(to right, #111111 0%, #333333 100%); 
+    margin: 0;
+    color: white; /* सभी टेक्स्ट का रंग सफ़ेद */
+    font-family: 'Oswald', sans-serif; /* रोल टेक्स्ट के लिए फ़ॉन्ट */
+    
+    /* कंटेंट को स्क्रीन के बीच में (Center) रखने के लिए */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* पूरी स्क्रीन की ऊँचाई लें */
+    text-align: center;
+}
+
+.portfolio-container {
+    padding: 20px;
+}
+
+/* 1. "Personal Portfolio" शीर्षक */
+.main-title {
+    /* Playfair Display फ़ॉन्ट आपकी इमेज के सीरिफ़ फ़ॉन्ट से मेल खाता है */
+    font-family: 'Playfair Display', serif;
+    font-size: 8vw; /* स्क्रीन साइज़ के हिसाब से साइज़ एडजस्ट होता है */
+    font-weight: 400; /* हल्का वजन */
+    line-height: 1.0;
+    margin: 0;
+    color: #333333; /* गहरा ग्रे, जैसा इमेज में है */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1); /* हल्का विज़ुअल इफ़ेक्ट */
+    
+    /* टेक्स्ट को ऊपर और नीचे की लाइन में ब्रेक करने के लिए */
+    white-space: pre-line;
+}
+
+/* 2. Divider Line */
+.divider {
+    width: 60px;
+    height: 3px;
+    background-color: #e8a87c; /* नारंगी/भूरा रंग */
+    margin: 20px auto 10px auto; /* ऊपर और नीचे मार्जिन, और सेंटर करें */
+}
+
+/* 3. "himanshujangra" सिग्नेचर टेक्स्ट */
+.signature-name {
+    /* Great Vibes फ़ॉन्ट आपकी इमेज के हस्तलिपि फ़ॉन्ट से मेल खाता है */
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5vw; 
+    font-weight: 400;
+    color: #e8a87c; /* नारंगी/भूरा रंग */
+    margin: 10px 0 0 0;
+    
+    /* टेक्स्ट को थोड़ा ऊपर उठाएँ ताकि यह divider से जुड़ जाए */
+    transform: translateY(10px);
+}
+
+/* 4. "WEB DEVELOPER" रोल टेक्स्ट */
+.role-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5vw;
+    letter-spacing: 0.5em; /* अक्षरों के बीच की दूरी (स्पेसिंग) */
+    font-weight: 300;
+    margin: 0;
+    color: white;
+}
+
+/* छोटे स्क्रीन के लिए एडजस्टमेंट (मोबाइल) */
+@media (max-width: 600px) {
+    .main-title {
+        font-size: 14vw;
+    }
+    .signature-name {
+        font-size: 6vw;
+    }
+    .role-text {
+        font-size: 3vw;
+        letter-spacing: 0.3em;
+    }
+}
+/* -------------------- हेडर स्टाइलिंग -------------------- */
+.main-header {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #575454; /* आपके पिछले कोड से लिया गया हेडर बैकग्राउंड */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    position: fixed; /* इसे टॉप पर फिक्स रखता है */
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+/* -------------------- लोगो बटन स्टाइलिंग -------------------- */
+.logo-button {
+    background: none;
+    border: none;
+    cursor: pointer; /* माउस को क्लिकेबल दिखाता है */
+    padding: 0;
+    outline: none;
+}
+
+.logo-button img {
+    width: 50px; /* लोगो साइज़ */
+    height: 50px;
+    border-radius: 50%; /* गोलाकार लोगो */
+    display: block;
+    transition: transform 0.2s;
+}
+
+/* Hover इफ़ेक्ट */
+.logo-button:hover img {
+    transform: scale(1.05); /* माउस आने पर थोड़ा बड़ा होता है */
+}
+
+/* -------------------- मुख्य कंटेंट एडजस्टमेंट -------------------- */
+.main-content {
+    /* कंटेंट को हेडर के नीचे से शुरू करने के लिए पैडिंग */
+    padding-top: 70px; 
+    text-align: center;
+}
+
+.main-content img {
+    /* इमेज को responsive बनाने के लिए */
+    max-width: 100%;
+    height: auto;
+}
+/* 1. Keyframes Animation Definition */
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7; /* थोड़ा पारदर्शी करें */
+        transform: scale(1.02); /* थोड़ा बड़ा करें */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 2. Keyframes को h2 पर लागू करना */
+.side-text-area h2 {
+    /* सुनिश्चित करें कि आपके पास h2 के लिए पहले से ही स्टाइलिंग है,
+       यह सिर्फ एनिमेशन लागू करने के लिए है: */
+    
+    color: #333; /* कोई भी रंग */
+    font-size: 2em; /* कोई भी साइज़ */
+    
+    /* एनिमेशन प्रॉपर्टी */
+    animation-name: pulse; /* Keyframes का नाम */
+    animation-duration: 2s; /* एनिमेशन की अवधि */
+    animation-timing-function: ease-in-out; /* गति वक्र */
+    animation-iteration-count: infinite; /* लगातार दोहराएं */
+    animation-direction: alternate; /* आगे-पीछे चलें */
+}
+
+/* यदि आप प्रोफाइल इमेज पर भी एनिमेशन चाहते हैं: */
+.profile-logo {
+    transition: transform 0.3s ease; /* माउस-ओवर के लिए */
+}
+
+.profile-logo:hover {
+    transform: rotate(5deg) scale(1.05); /* माउस-ओवर पर थोड़ा घुमाएं/बड़ा करें */
+}

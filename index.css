@@ -1,0 +1,53 @@
+/* Body and Font settings */
+body { 
+    font-family: 'Inter', sans-serif; 
+    /* The main background is set to bg-gray-900 in HTML, but setting font here for consistency */
+}
+
+/* Page content (Necessary for Page Transition) */
+.page-content {
+    display: none;
+    opacity: 0;
+    /* Animation: 0.5s smooth fade-in/fade-out */
+    transition: opacity 0.5s ease-in-out;
+    min-height: calc(100vh - 80px); /* Adjusting for navigation bar height */
+}
+
+/* To show and fade-in the active page */
+.page-content.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Project Card Hover Animation - Subtle shadow on dark background */
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.2); /* Subtle cyan glow on hover */
+}
+
+/* Hero Section Animation: For the Animated Front Page */
+@keyframes pulse-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- BLACK/DARK GRADIENT THEME --- */
+.hero-black-bg {
+    /* Gradient from dark black to deep midnight blue, giving a rich, dark feel */
+    background: linear-gradient(-45deg, #111827, #0f0f0f, #1a1a1a);
+    background-size: 400% 400%;
+    animation: pulse-gradient 12s ease infinite; /* Slow, smooth animation */
+}
+
+/* Fade-in for initial content load on Home */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+    animation: fadeIn 0.8s ease-out forwards;
+}

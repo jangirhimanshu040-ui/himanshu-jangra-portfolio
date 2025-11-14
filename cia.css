@@ -1,0 +1,366 @@
+/* ----------------------------------------------------
+   1. THEME VARIABLES: CONSISTENCY CONTROL
+   ---------------------------------------------------- */
+:root {
+    --primary-color: #007bff;        /* Main accent color */
+    --secondary-color: #343a40;      /* Dark text/footer color */
+    --background-color: #1c1c1d;     /* Body background (very dark grey) */
+    --text-color: #f0f0f0;           /* Text color (White/Light grey for contrast) - FIX 1 */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --header-height: 70px;
+    --content-bg: #444;              /* Content area background (Darker grey) - NEW VARIABLE */
+}
+
+/* ----------------------------------------------------
+   2. GENERAL & RESET STYLES
+   ---------------------------------------------------- */
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color); /* FIX 2: Body text color is set to be readable on dark background */
+    line-height: 1.6;
+    /* FIX 3: box-sizing body à¤•à¥‡ à¤¬à¤¾à¤¹à¤° à¤¹à¥‹à¤¨à¤¾ à¤šà¤¾à¤¹à¤¿à¤ */
+}
+
+/* FIX 4: à¤¯à¥‚à¤¨à¤¿à¤µà¤°à¥à¤¸à¤² à¤¬à¥‰à¤•à¥à¤¸-à¤¸à¤¾à¤‡à¤œà¤¿à¤‚à¤— à¤¸à¤¹à¥€ à¤œà¤—à¤¹ à¤ªà¤° */
+*, *::before, *::after {
+    box-sizing: border-box; 
+}
+/* ----------------------------------------------------
+   9. LOGO OVERLAY ANIMATION STYLES
+   ---------------------------------------------------- */
+.logo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Near black background */
+    z-index: 2000; /* Ensure it is above all other content */
+    display: none; /* Hidden by default */
+    
+    /* Starting state: Covers the whole page, but content is hidden/transformed */
+    opacity: 0; 
+    transform: scale(0.1) rotateX(180deg); /* Small and rotated */
+    transform-origin: top left; /* Rotation starts from the logo's position */
+
+    /* Set the smooth transition */
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Smooth, springy effect */
+    
+    /* To center the content inside the overlay */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+/* Active state: When the logo is clicked and transition begins */
+.logo-overlay.active {
+    opacity: 1;
+    transform: scale(1) rotateX(0deg); /* Normal size and rotation */
+    
+    /* HALF SQUARE EFFECT */
+    width: 50vw; /* Half the viewport width */
+    height: 50vh; /* Half the viewport height */
+    
+    /* Center it on the screen */
+    top: 25vh; /* Vertical centering */
+    left: 25vw; /* Horizontal centering */
+    
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(87, 85, 85, 0.8); /* Light glow using header color */
+}
+
+.overlay-content {
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.overlay-content button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.overlay-content button:hover {
+    background-color: #0056b3;
+}
+
+/* Smoothly hide the logo during the transition */
+#main-logo {
+    transition: opacity 0.5s ease; 
+    cursor: pointer;
+}
+
+/* ----------------------------------------------------
+   3. HEADER & LOGO STYLES
+   ---------------------------------------------------- */
+.main-header {
+    background-color: rgb(110, 97, 97); /* Header background color (Reddish) */
+    padding: 0 20px;
+    height: var(--header-height);
+    display: flex; /* FIX 5: Comments removed or properly placed */
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    
+}
+
+.site-logo {
+    max-height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* ----------------------------------------------------
+   4. NAVIGATION STYLES
+   ---------------------------------------------------- */
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.main-nav li {
+    margin-left: 25px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 600;
+    padding: 10px 0;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* ----------------------------------------------------
+   5. MAIN CONTENT AREA STYLES
+   ---------------------------------------------------- */
+.content-area {
+    padding: 40px 20px;
+    min-height: calc(100vh - var(--header-height) - 100px);
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: var(--content-bg); 
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+}
+.background-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 1; 
+    
+    filter: blur(2px) grayscale(80%); 
+    opacity: 0.30; 
+    pointer-events: none; 
+}
+
+
+.main-content-wrapper {
+    position: left;
+    z-index: 3; 
+    
+    
+    padding: 40px 20px; 
+    
+    
+    background-color: rgba(70, 68, 68, 0.75); 
+    border-radius: 8px;
+}
+.text-loader {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;         /* 🔹 Default text color */
+  opacity: 4;           /* 🔹 50% visibility */
+  animation: FlipText 7s linear infinite;
+}
+
+/* Text animation */
+.text-loader::before {
+  content: "Welcome to my digital space";
+  animation: FlipText 6s linear infinite;
+}
+
+@keyframes FlipText {
+  0%, 19% {
+    content: "Welcome to my digital space";
+    transform: translateY(0);
+    color: #0056b3;
+  }
+  20%, 39% {
+    content: "Welcome to my digital office";
+    transform: translateY(-5px);
+    color: #f0f0f0;
+  }
+  40%, 59% {
+    content: "Welcome to my digital world";
+    transform: translateY(0);
+    color: cornflowerblue;
+  }
+  60%, 79% {
+    content: "Welcome to my digital home";
+    transform: translateY(5px);
+    color: lemonchiffon;
+  }
+  80%, 100% {
+    content: "Welcome to my digital market";
+    transform: translateY(0);
+    color: lightslategray;
+  }
+}
+
+
+/* Optional fade effect between texts */
+@keyframes fadeText {
+  0%, 45%, 100% { opacity: 1; }
+  50%, 95% { opacity: 0.7; }
+}
+
+
+
+.main-content-wrapper h1,
+.main-content-wrapper p,
+.main-content-wrapper h3 {
+    color: var(--text-color); 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); 
+}
+.content-area h1 {
+    color: var(--primary-color);
+}
+.content-area p {
+    color: var(--text-color); 
+}
+
+/* ----------------------------------------------------
+  ------------------- */
+.earth-and-extra-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin: 40px auto;
+    flex-wrap: wrap;
+}
+
+
+/* ----------------------------------------------------
+   
+   ---------------------------------------------------- */
+.earth-container {
+   
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;
+}
+
+.earth {
+    width: 200px;
+    height: 200px;
+    
+    background: radial-gradient(circle at 100px 100px, #3b3c3d, #323233);
+    border-radius: 50%;
+    box-shadow: inset 0 0 50px rgba(61, 60, 60, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    animation: rotateEarth 15s linear infinite;
+}
+
+
+.earth::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" result="noise"></feTurbulence><feColorMatrix in="noise" type="matrix" values="0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 0.4 0" result="opacityNoise" /><feGaussianBlur in="opacityNoise" stdDeviation="1.5" result="blurredNoise" /><feBlend in="SourceGraphic" in2="blurredNoise" mode="multiply" /></filter><rect width="100%" height="100%" fill="#90ee90" filter="url(#noiseFilter)" opacity="0.4"/></svg>'); /* Lightened fill color for visibility */
+    background-size: 250px 250px;
+    background-repeat: repeat-x;
+    animation: moveTexture 15s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes rotateEarth {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes moveTexture {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 250px 0;
+    }
+}
+
+
+
+.main-footer {
+    background-color: var(--secondary-color);
+    color: rgb(184, 177, 177);
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+}
+
+.main-footer a{
+    color: #96989c;
+    text-decoration: none;
+}
+/* ----------------------------------------------------
+   
+   ---------------------------------------------------- */
+.earth-logo-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    
+    width: 100%; 
+    height: 100%;
+    
+   
+    object-fit: cover; 
+    
+   
+    border-radius: 50%;
+    
+   
+    animation: rotateEarth 15s linear infinite; 
+    
+    
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}

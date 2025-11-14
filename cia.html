@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website - Homepage</title>
+    <link rel="stylesheet" href="cia.css">
+</head>
+<body>
+
+    <div id="logo-overlay" class="logo-overlay">
+        <div class="overlay-content">
+            <h2>hey! </h2>
+            
+            <img src="Black and White Circle Business Logo.jpg" alt="Overlay Image" class="overlay-image">
+            
+            <div class="3d-text">!GREAT</div> 
+            
+            <p>HIMANSHU JANGRA#</p>
+            <button onclick="closeOverlay()">Close</button>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="Black and White Circle Business Logo.jpg" 
+                 alt="Company Logo" 
+                 class="site-logo" 
+                 id="main-logo" 
+                 onclick="openOverlay()"> 
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="cia2.html" target="_blank">CLICK TO NEXT PAGE </a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="content-area">
+        <iframe src="https://cianet.in/" class="background-iframe" title="Live Website Background"></iframe>
+    <div class="main-content-wrapper">
+        <h1 class="text-loader"></h1>
+        <p>I craft creative, responsive, and modern websites that blend design with powerful functionality. 💻✨.</p>
+       <button onclick="window.open('https://www.instagram.com/_himanshu_jangra___/', '_blank')"
+        style="background-color: #007BFF; color: white; border: none; padding: 10px 20px; 
+               border-radius: 6px; cursor: pointer; font-size: 16px;">
+    click here !
+</button>
+
+
+        <div class="earth-and-extra-image-container"> 
+            <div class="earth-container">
+                <div class="earth">
+                    <img src="Black and White Circle Business Logo.jpg" alt="Rotating Inner Logo" class="earth-logo-image">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; himanshu jangra##.</p>
+    </footer>
+
+    <script>
+        function openOverlay() {
+            const logo = document.getElementById('main-logo');
+            const overlay = document.getElementById('logo-overlay');
+            
+            
+            logo.style.opacity = '0';
+            overlay.style.display = 'flex'; 
+            
+            
+            setTimeout(() => {
+                overlay.classList.add('active');
+            }, 10);
+        }
+
+        function closeOverlay() {
+            const logo = document.getElementById('main-logo');
+            const overlay = document.getElementById('logo-overlay');
+            
+            
+            overlay.classList.remove('active');
+            
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                logo.style.opacity = '1';
+            }, 800); 
+        }
+        
+    </script>
+</body>
+</html>

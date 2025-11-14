@@ -1,0 +1,102 @@
+/* सामान्य स्टाइलिंग और फ़ॉन्ट एप्लीकेशन */
+/* ------------------------------------------------ */
+/* 1. BODY STYLING (Background Image Setup) */
+/* ------------------------------------------------ */
+body {
+    /* अपनी इमेज फ़ाइल का पाथ यहाँ दें (जैसे 'background.jpg') */
+    background-image: url('/image/last\ page.jpg'); 
+    
+    /* इमेज सेटिंग्स */
+    background-size: cover;          /* इमेज को पूरे पेज को कवर करने के लिए स्ट्रेच करें */
+    background-position: center center; /* इमेज को सेंटर में रखें */
+    background-repeat: no-repeat;    /* इमेज को दोहराएँ नहीं */
+    background-attachment: fixed;    /* पेज स्क्रॉल करने पर इमेज फिक्स रहे */
+
+    /* ओवरले (Overlay) सेटिंग्स */
+    /* यह इमेज को थोड़ा गहरा कर देगा, जिससे टेक्स्ट पढ़ना आसान हो जाएगा */
+    background-color: rgba(0, 0, 0, 0.4); /* 40% काला रंग */
+    background-blend-mode: overlay;    /* इस रंग को इमेज के साथ मिलाएँ */
+
+    /* फ़ुल-स्क्रीन लेआउट के लिए */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif; /* यदि कोई और फ़ॉन्ट नहीं दिया गया है */
+    color: white; /* सुनिश्चित करें कि टेक्स्ट दिखाई दे */
+}
+
+/* ------------------------------------------------ */
+/* 2. Content Styling (यदि कोई टेक्स्ट जोड़ना हो) */
+/* ------------------------------------------------ */
+/* यदि आप बॉडी में कोई कंटेंट जोड़ते हैं, तो वह सेंटर में दिखेगा */
+.content-wrapper {
+    text-align: center;
+    padding-top: 200px;
+}
+
+h1 {
+    font-size: 3em;
+}
+.portfolio-container {
+    padding: 20px;
+}
+
+/* 1. "Personal Portfolio" शीर्षक */
+.main-title {
+    /* Playfair Display फ़ॉन्ट आपकी इमेज के सीरिफ़ फ़ॉन्ट से मेल खाता है */
+    font-family: 'Playfair Display', serif;
+    font-size: 8vw; /* स्क्रीन साइज़ के हिसाब से साइज़ एडजस्ट होता है */
+    font-weight: 400; /* हल्का वजन */
+    line-height: 1.0;
+    margin: 0;
+    color: #333333; /* गहरा ग्रे, जैसा इमेज में है */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1); /* हल्का विज़ुअल इफ़ेक्ट */
+    
+    /* टेक्स्ट को ऊपर और नीचे की लाइन में ब्रेक करने के लिए */
+    white-space: pre-line;
+}
+
+/* 2. Divider Line */
+.divider {
+    width: 60px;
+    height: 3px;
+    background-color: #e8a87c; /* नारंगी/भूरा रंग */
+    margin: 20px auto 10px auto; /* ऊपर और नीचे मार्जिन, और सेंटर करें */
+}
+
+/* 3. "himanshujangra" सिग्नेचर टेक्स्ट */
+.signature-name {
+    /* Great Vibes फ़ॉन्ट आपकी इमेज के हस्तलिपि फ़ॉन्ट से मेल खाता है */
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5vw; 
+    font-weight: 400;
+    color: #e8a87c; /* नारंगी/भूरा रंग */
+    margin: 10px 0 0 0;
+    
+    /* टेक्स्ट को थोड़ा ऊपर उठाएँ ताकि यह divider से जुड़ जाए */
+    transform: translateY(10px);
+}
+
+/* 4. "WEB DEVELOPER" रोल टेक्स्ट */
+.role-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5vw;
+    letter-spacing: 0.5em; /* अक्षरों के बीच की दूरी (स्पेसिंग) */
+    font-weight: 300;
+    margin: 0;
+    color: white;
+}
+
+/* छोटे स्क्रीन के लिए एडजस्टमेंट (मोबाइल) */
+@media (max-width: 600px) {
+    .main-title {
+        font-size: 14vw;
+    }
+    .signature-name {
+        font-size: 6vw;
+    }
+    .role-text {
+        font-size: 3vw;
+        letter-spacing: 0.3em;
+    }
+}
