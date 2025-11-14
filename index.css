@@ -51,7 +51,3 @@ body {
 .animate-fadeIn {
     animation: fadeIn 0.8s ease-out forwards;
 }
-.contact-item {
-    word-wrap: break-word; /* For legacy browsers */
-    word-break: break-all; /* Breaks the word at any character */
-}
